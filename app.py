@@ -20,7 +20,7 @@ st.markdown(
         --surface-3: #f3f4f6;
         --border: #e5e7eb;
         --text: #111827;
-        --text-muted: #6b7280;
+        --text-muted: #4b5563;
         --accent: #10a37f;
         --accent-soft: #ecfdf5;
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
@@ -28,14 +28,15 @@ st.markdown(
         --radius-xl: 24px;
     }
 
-    html, body, [class*="css"] {
+    /* Force background and default text colors across all Streamlit elements */
+    html, body, [class*="st-"], [class*="css"], .stApp {
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        color: var(--text);
-        background: var(--surface);
+        color: var(--text) !important;
+        background-color: var(--surface) !important;
     }
 
     .stApp {
-        background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+        background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%) !important;
     }
 
     #MainMenu, footer, header {
@@ -48,9 +49,21 @@ st.markdown(
     }
 
     section[data-testid="stSidebar"] {
-        background: var(--surface-2);
+        background-color: var(--surface-2) !important;
         border-right: 1px solid var(--border);
         padding-top: 0.75rem;
+    }
+
+    /* Force chat message text visibility */
+    [data-testid="stChatMessage"] {
+        background-color: transparent !important;
+        color: var(--text) !important;
+    }
+
+    [data-testid="stChatMessage"] p, 
+    [data-testid="stChatMessage"] span, 
+    [data-testid="stChatMessage"] div {
+        color: var(--text) !important;
     }
 
     .sidebar-card {
@@ -66,12 +79,12 @@ st.markdown(
         font-size: 0.95rem;
         font-weight: 700;
         margin-bottom: 0.3rem;
-        color: var(--text);
+        color: var(--text) !important;
     }
 
     .sidebar-subtitle {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: var(--text-muted) !important;
         line-height: 1.5;
     }
 
@@ -87,7 +100,7 @@ st.markdown(
         font-size: 1.2rem;
         font-weight: 700;
         margin: 0;
-        color: var(--text);
+        color: var(--text) !important;
     }
 
     .topbar .pill {
@@ -97,7 +110,7 @@ st.markdown(
         padding: 0.45rem 0.7rem;
         border-radius: 999px;
         background: var(--accent-soft);
-        color: var(--accent);
+        color: var(--accent) !important;
         font-size: 0.8rem;
         font-weight: 600;
     }
@@ -114,13 +127,13 @@ st.markdown(
     .hero-title {
         font-size: 1.35rem;
         font-weight: 700;
-        color: var(--text);
+        color: var(--text) !important;
         margin: 0 0 0.35rem;
     }
 
     .hero-text {
         font-size: 0.95rem;
-        color: var(--text-muted);
+        color: var(--text-muted) !important;
         line-height: 1.6;
         margin: 0;
     }
@@ -135,58 +148,47 @@ st.markdown(
     .chip {
         border: 1px solid var(--border);
         background: var(--surface);
-        color: var(--text);
+        color: var(--text) !important;
         border-radius: 999px;
         padding: 0.4rem 0.7rem;
         font-size: 0.82rem;
         cursor: pointer;
     }
 
-    .message-wrap {
-        margin: 0.8rem 0;
-        display: flex;
-    }
-
-    .message-wrap.user {
-        justify-content: flex-end;
-    }
-
-    .message-wrap.assistant {
-        justify-content: flex-start;
-    }
-
     .bubble {
-        max-width: 92%;
+        max-width: 100%;
         border-radius: 18px;
         padding: 0.95rem 1rem;
         line-height: 1.6;
         border: 1px solid var(--border);
         box-shadow: var(--shadow-sm);
+        margin-top: 0.5rem;
     }
 
     .bubble.user {
-        background: var(--accent);
-        color: white;
+        background: var(--accent) !important;
+        color: #ffffff !important;
         border-color: var(--accent);
     }
 
     .bubble.assistant {
-        background: var(--surface);
-        color: var(--text);
+        background: var(--surface) !important;
+        color: var(--text) !important;
+    }
+
+    .bubble.assistant * {
+        color: var(--text) !important;
     }
 
     .bubble h3, .bubble h4 {
         margin: 0.2rem 0 0.45rem;
         font-size: 1rem;
+        color: var(--text) !important;
     }
 
     .bubble p {
         margin: 0.25rem 0;
-    }
-
-    .bubble ul {
-        padding-left: 1rem;
-        margin: 0.35rem 0;
+        color: var(--text) !important;
     }
 
     .bubble code {
@@ -195,26 +197,7 @@ st.markdown(
         padding: 0.1rem 0.35rem;
         border-radius: 6px;
         font-size: 0.9em;
-    }
-
-    .step-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.55rem;
-        margin: 0.75rem 0 0.85rem;
-    }
-
-    .step-pill {
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        border-radius: 999px;
-        padding: 0.45rem 0.7rem;
-        font-size: 0.82rem;
-        color: var(--text-muted);
-    }
-
-    .step-pill strong {
-        color: var(--text);
+        color: var(--text) !important;
     }
 
     .empty-state {
@@ -228,51 +211,32 @@ st.markdown(
     .empty-state h3 {
         margin: 0 0 0.3rem;
         font-size: 1rem;
+        color: var(--text) !important;
     }
 
     .empty-state p {
         margin: 0;
-        color: var(--text-muted);
+        color: var(--text-muted) !important;
         line-height: 1.6;
     }
 
     .stButton > button {
         border-radius: 999px;
         border: 1px solid var(--border);
-        background: var(--surface);
-        color: var(--text);
+        background: var(--surface) !important;
+        color: var(--text) !important;
         padding: 0.55rem 0.85rem;
         transition: all 180ms ease;
     }
 
     .stButton > button:hover {
         border-color: var(--accent);
-        color: var(--accent);
+        color: var(--accent) !important;
     }
 
-    .stTextInput > div > div > input,
-    .stTextArea > div > div > textarea {
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        padding: 0.75rem 0.95rem;
-        background: var(--surface);
-    }
-
-    .stTextInput > div > div > input:focus,
-    .stTextArea > div > div > textarea:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.12);
-    }
-
-    .stChatInput {
-        border-top: 1px solid var(--border);
-        padding-top: 0.8rem;
-    }
-
-    @media (max-width: 900px) {
-        .step-list {
-            grid-template-columns: 1fr;
-        }
+    .stTextInput input, .stTextArea textarea {
+        color: var(--text) !important;
+        background: var(--surface) !important;
     }
     </style>
     """,
@@ -336,7 +300,10 @@ def render_message(message: dict, index: int) -> None:
 
         selected_view = st.session_state[view_key]
         selected_content = data.get(selected_view, data[available_views[0]])
-        st.markdown(format_message_content(selected_content))
+
+        # Wrap view content inside assistant bubble to maintain contrast styling
+        formatted = format_message_content(selected_content)
+        st.markdown(f"<div class='bubble assistant'>{formatted}</div>", unsafe_allow_html=True)
 
 
 if "messages" not in st.session_state:
