@@ -62,6 +62,57 @@ st.markdown(
         padding-top: 0.75rem;
     }
 
+    [data-testid="stSidebarCollapseButton"] {
+        position: absolute;
+        left: 0.6rem;
+        top: 0.7rem;
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface) !important;
+        color: var(--text) !important;
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem !important;
+        line-height: 1 !important;
+        z-index: 10;
+    }
+
+    [data-testid="stSidebarCollapseButton"] > span,
+    [data-testid="stSidebarCollapseButton"] svg,
+    [data-testid="stSidebarCollapseButton"] img,
+    [role="img"],
+    .emoji,
+    .icon {
+        font-size: 1rem !important;
+        width: 1rem !important;
+        height: 1rem !important;
+        line-height: 1 !important;
+    }
+
+    .stButton > button,
+    .stToggle > div,
+    .stCaption,
+    .sidebar-card,
+    .sidebar-title,
+    .sidebar-subtitle,
+    .chip,
+    .pill,
+    .hero-title,
+    .hero-text,
+    .empty-state,
+    .bubble,
+    .bubble p,
+    .bubble h3,
+    .bubble h4,
+    .stTextInput input,
+    .stTextArea textarea {
+        font-size: 0.95rem !important;
+    }
+
     /* Force chat message text visibility */
     [data-testid="stChatMessage"] {
         background-color: transparent !important;
