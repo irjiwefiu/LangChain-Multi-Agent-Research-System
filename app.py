@@ -9,35 +9,43 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.markdown(
-    """
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
 
-    :root {
-        --surface: #ffffff;
-        --surface-2: #f7f7f8;
-        --surface-3: #f3f4f6;
-        --border: #e5e7eb;
-        --text: #111827;
-        --text-muted: #4b5563;
-        --accent: #10a37f;
-        --accent-soft: #ecfdf5;
+light_mode = not st.session_state.dark_mode
+current_theme = "dark" if st.session_state.dark_mode else "light"
+
+st.markdown(
+    f"""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {{
+        color-scheme: {current_theme};
+        --surface: {'#0f172a' if st.session_state.dark_mode else '#ffffff'};
+        --surface-2: {'#111827' if st.session_state.dark_mode else '#f7f7f8'};
+        --surface-3: {'#1f2937' if st.session_state.dark_mode else '#f3f4f6'};
+        --border: {'#334155' if st.session_state.dark_mode else '#e5e7eb'};
+        --text: {'#e5e7eb' if st.session_state.dark_mode else '#111827'};
+        --text-muted: {'#cbd5e1' if st.session_state.dark_mode else '#4b5563'};
+        --accent: {'#7dd3fc' if st.session_state.dark_mode else '#10a37f'};
+        --accent-soft: {'#0f172a' if st.session_state.dark_mode else '#ecfdf5'};
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
         --radius-lg: 16px;
         --radius-xl: 24px;
-    }
+    }}
 
     /* Force background and default text colors across all Streamlit elements */
-    html, body, [class*="st-"], [class*="css"], .stApp {
+    html, body, [class*="st-"], [class*="css"], .stApp {{
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-weight: 300;
         color: var(--text) !important;
         background-color: var(--surface) !important;
-    }
+    }}
 
-    .stApp {
-        background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%) !important;
-    }
+    .stApp {{
+        background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%) !important;
+    }}
 
     #MainMenu, footer, header {
         visibility: hidden;
@@ -324,6 +332,9 @@ with st.sidebar:
         """,
         unsafe_allow_html=True,
     )
+
+    st.session_state.dark_mode = st.toggle("Dark mode", value=st.session_state.dark_mode, key="theme_toggle")
+    st.caption("Default is light mode; this setting overrides the device default.")
 
     if st.button("New chat", use_container_width=True):
         reset_chat()
