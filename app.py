@@ -15,37 +15,46 @@ if "dark_mode" not in st.session_state:
 light_mode = not st.session_state.dark_mode
 current_theme = "dark" if st.session_state.dark_mode else "light"
 
+theme_surface = "#0f172a" if st.session_state.dark_mode else "#ffffff"
+theme_surface_2 = "#111827" if st.session_state.dark_mode else "#f7f7f8"
+theme_surface_3 = "#1f2937" if st.session_state.dark_mode else "#f3f4f6"
+theme_border = "#334155" if st.session_state.dark_mode else "#e5e7eb"
+theme_text = "#e5e7eb" if st.session_state.dark_mode else "#111827"
+theme_text_muted = "#cbd5e1" if st.session_state.dark_mode else "#4b5563"
+theme_accent = "#7dd3fc" if st.session_state.dark_mode else "#10a37f"
+theme_accent_soft = "#0f172a" if st.session_state.dark_mode else "#ecfdf5"
+
 st.markdown(
-    f"""
+    """
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    :root {{
-        color-scheme: {current_theme};
-        --surface: {'#0f172a' if st.session_state.dark_mode else '#ffffff'};
-        --surface-2: {'#111827' if st.session_state.dark_mode else '#f7f7f8'};
-        --surface-3: {'#1f2937' if st.session_state.dark_mode else '#f3f4f6'};
-        --border: {'#334155' if st.session_state.dark_mode else '#e5e7eb'};
-        --text: {'#e5e7eb' if st.session_state.dark_mode else '#111827'};
-        --text-muted: {'#cbd5e1' if st.session_state.dark_mode else '#4b5563'};
-        --accent: {'#7dd3fc' if st.session_state.dark_mode else '#10a37f'};
-        --accent-soft: {'#0f172a' if st.session_state.dark_mode else '#ecfdf5'};
+    :root {
+        color-scheme: """ + current_theme + """;
+        --surface: """ + theme_surface + """;
+        --surface-2: """ + theme_surface_2 + """;
+        --surface-3: """ + theme_surface_3 + """;
+        --border: """ + theme_border + """;
+        --text: """ + theme_text + """;
+        --text-muted: """ + theme_text_muted + """;
+        --accent: """ + theme_accent + """;
+        --accent-soft: """ + theme_accent_soft + """;
         --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
         --radius-lg: 16px;
         --radius-xl: 24px;
-    }}
+    }
 
     /* Force background and default text colors across all Streamlit elements */
-    html, body, [class*="st-"], [class*="css"], .stApp {{
+    html, body, [class*="st-"], [class*="css"], .stApp {
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
         font-weight: 300;
         color: var(--text) !important;
         background-color: var(--surface) !important;
-    }}
+    }
 
-    .stApp {{
+    .stApp {
         background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%) !important;
-    }}
+    }
 
     #MainMenu, footer, header {
         visibility: hidden;
@@ -119,8 +128,8 @@ st.markdown(
         color: var(--text) !important;
     }
 
-    [data-testid="stChatMessage"] p, 
-    [data-testid="stChatMessage"] span, 
+    [data-testid="stChatMessage"] p,
+    [data-testid="stChatMessage"] span,
     [data-testid="stChatMessage"] div {
         color: var(--text) !important;
     }
