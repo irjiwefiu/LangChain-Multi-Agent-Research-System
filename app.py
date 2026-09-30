@@ -29,10 +29,28 @@ st.markdown(
     }
 
     /* Force global color consistency & handle dark mode overrides */
-    html, body, [class*="st-"], [class*="css"], .stApp {
+    html, body, .stApp {
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
         color: var(--text) !important;
         background-color: var(--surface) !important;
+    }
+
+    /* Preserve Streamlit's native Material icons in chat avatars */
+    .material-icons,
+    .material-symbols-rounded,
+    .material-symbols-outlined {
+        font-family: 'Material Icons', 'Material Symbols Rounded',
+                     'Material Symbols Outlined' !important;
+        font-weight: normal !important;
+        font-style: normal !important;
+        line-height: 1 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        white-space: nowrap !important;
+        word-wrap: normal !important;
+        direction: ltr !important;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
     }
 
     .stApp {
@@ -40,7 +58,7 @@ st.markdown(
     }
 
     #MainMenu, footer, header {
-        visibility: hidden;
+        visibility: visible;
     }
 
     .block-container {
